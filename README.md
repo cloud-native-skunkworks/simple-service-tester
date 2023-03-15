@@ -18,7 +18,10 @@ It has proven useful for sanity checks...
 
 ### Installation
 
-`make install`
+```
+git clone https://github.com/cloud-native-skunkworks/simple-service-tester.git
+make install
+```
 
 #### Customisation
 
