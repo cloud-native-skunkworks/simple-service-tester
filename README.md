@@ -4,7 +4,6 @@ Use this to test if Kubernetes cluster service to service communication is worki
 
 - All code included
 - Uses HTTP/2
-- Creates four basic GRPC services that talk to each other.
 
 It has proven useful for sanity checks...
 

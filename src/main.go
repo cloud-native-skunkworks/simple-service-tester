@@ -54,12 +54,12 @@ func (*server) SendMessage(c context.Context, r *proto.SendMessageRequest) (*pro
 func serverStart(port string) {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Warn("failed to listen: %v", err)
+		log.Error(err)
 	}
 	s := grpc.NewServer()
 	proto.RegisterMessageServer(s, &server{})
 	if err := s.Serve(lis); err != nil {
-		log.Warn("failed to serve: %v", err)
+		log.Error(err)
 	}
 }
 func client(address string, message string) error {
@@ -117,8 +117,6 @@ func remotePulse(url string) error {
 		time.Sleep(time.Second * 5)
 
 	}
-
-	return nil
 }
 
 var Options struct {
