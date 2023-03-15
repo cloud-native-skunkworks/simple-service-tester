@@ -1,0 +1,36 @@
+{{ range $n , $value := .Values.deployments }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $value.name }}
+  namespace: {{ $value.namespace }}
+  labels:
+    app: {{ $value.name }}
+spec:
+  replicas: {{ $value.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $value.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $value.name }}
+    spec:
+      containers:
+        - name: {{ $value.name }}
+          image: {{ $value.image.repository }}
+          imagePullPolicy: {{ $value.image.pullPolicy }}
+          command: ["/bin/sh"]
+          args: ["-c", "{{ $value.command }}"]
+          resources:
+            requests:
+              memory: "0.5Gi"
+            limits:
+              memory: "1Gi"
+          ports:
+            - containerPort: {{ $value.port }}
+              name: grpc
+              protocol: TCP
+---
+
+{{ end }}

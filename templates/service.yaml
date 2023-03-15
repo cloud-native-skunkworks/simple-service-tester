@@ -1,0 +1,17 @@
+{{ range $n , $value := .Values.deployments }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $value.name }}
+  namespace: {{ $value.namespace }}
+  labels:
+    app: {{ $value.name }}
+    component: service
+spec:
+  ports:
+    - name: grpc-port
+      port: {{ $value.port }}
+  selector:
+    app: {{ $value.name }}
+---
+{{ end }}

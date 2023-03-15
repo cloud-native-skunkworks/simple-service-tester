@@ -1,0 +1,38 @@
+# Add lots of deployments and point them at each other wew pinnacle of technology
+
+deployments:
+  - name: alpha
+    namespace: foo
+    replicaCount: 2
+    port: 9000
+    command: "/bin/ist -s 0.0.0.0:9000 -t beta.foo:9001"
+    image:
+      repository: cnskunkworks/simple-service-tester:v1
+      pullPolicy: Always
+
+  - name: beta
+    namespace: foo
+    replicaCount: 2
+    port: 9001
+    command: "/bin/ist -s 0.0.0.0:9001 -t charlie.foo:9000"
+    image:
+      repository: cnskunkworks/simple-service-tester:v1
+      pullPolicy: Always
+
+  - name: charlie
+    namespace: foo
+    replicaCount: 2
+    port: 9000
+    command: "/bin/ist -s 0.0.0.0:9000 -t delta.bar:9001"
+    image:
+      repository: cnskunkworks/simple-service-tester:v1
+      pullPolicy: Always
+
+  - name: delta
+    namespace: bar
+    replicaCount: 2
+    port: 9001
+    command: "/bin/ist -s 0.0.0.0:9001 -t alpha.foo:9000"
+    image:
+      repository: cnskunkworks/simple-service-tester:v1
+      pullPolicy: Always

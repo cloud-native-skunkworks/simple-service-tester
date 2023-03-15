@@ -1,0 +1,4 @@
+.DS_Store
+.idea*
+simple-service-tester
+src/vendor

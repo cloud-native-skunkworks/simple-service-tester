@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto;
+service Message {
+  // Sends a greeting
+  rpc SendMessage (SendMessageRequest) returns (SendMessageResponse) {}
+}
+message SendMessageRequest {
+  string Message = 1;
+}
+message SendMessageResponse {
+  string Response = 1;
+}
