@@ -2,6 +2,8 @@
 
 deployments:
   - name: alpha
+    # -- Node labels for pod assignment
+    nodeSelector: {}
     namespace: foo
     replicaCount: 2
     port: 9000
@@ -11,6 +13,8 @@ deployments:
       pullPolicy: Always
 
   - name: beta
+    # -- Node labels for pod assignment
+    nodeSelector: {}
     namespace: foo
     replicaCount: 2
     port: 9001
@@ -20,6 +24,8 @@ deployments:
       pullPolicy: Always
 
   - name: charlie
+    # -- Node labels for pod assignment
+    nodeSelector: {}
     namespace: foo
     replicaCount: 2
     port: 9000
@@ -29,6 +35,8 @@ deployments:
       pullPolicy: Always
 
   - name: delta
+    # -- Node labels for pod assignment
+    nodeSelector: {}
     namespace: bar
     replicaCount: 2
     port: 9001

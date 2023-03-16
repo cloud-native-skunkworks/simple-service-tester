@@ -16,6 +16,9 @@ spec:
       labels:
         app: {{ $value.name }}
     spec:
+      {{- if $value.nodeSelector }}
+      nodeSelector: {{- $value.nodeSelector | toYaml | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ $value.name }}
           image: {{ $value.image.repository }}
